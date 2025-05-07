@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  app:
+    build: .
+    container_name: note-app
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGODB_URI=mongodb+srv://agamdeep0110:yX5h2sGC1aUrUTGB@cluster0.a0noh5y.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+    depends_on:
+      - mongo
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+volumes:
+  mongo-data:

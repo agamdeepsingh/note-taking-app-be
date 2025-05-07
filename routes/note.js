@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/get', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     console.log("agam")
     const notes = await Note.find();
